@@ -63,6 +63,12 @@ public class MultiStompSinkConfiguration extends AbstractWebSocketMessageBrokerC
 //                topic = (route.split("_")[1]).substring(0,3);
             }
 
+
+            if (logger.isTraceEnabled()) {
+                logger.trace(String.format("topic: %s", topic));
+                logger.trace(String.format("stompPayload: %s", stompPayload.getPayloadString()));
+            }
+
             template.convertAndSend("/topic/" + topic, stompPayload);
         }
         catch (IOException e) {
